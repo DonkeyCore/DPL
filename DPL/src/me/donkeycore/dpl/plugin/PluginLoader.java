@@ -16,12 +16,18 @@ import me.donkeycore.dpl.io.FileCreator;
 
 public class PluginLoader {
 	
-	public static final File pluginFolder = new File(FileCreator.rootFolderFile.getAbsolutePath() + "/plugins/");
+	private static final File pluginFolder = new File(FileCreator.rootFolderFile.getAbsolutePath() + "/plugins/");
 	{
 		if (!pluginFolder.exists())
 			pluginFolder.mkdirs();
 		else
 			loadPlugins();
+	}
+	
+	private static final List<DPlugin> plugins = new ArrayList<DPlugin>();
+	
+	public DPlugin[] getPlugins() {
+		return plugins.toArray(new DPlugin[plugins.size()]);
 	}
 	
 	protected void loadPlugins() {
@@ -51,6 +57,7 @@ public class PluginLoader {
 							Class<?> c = Class.forName(cn);
 							if(c.getSuperclass().getName().equals(DPlugin.class.getName())) {
 								Object o = c.getConstructor().newInstance();
+								plugins.add((DPlugin) o);
 							}
 						}
 					}
