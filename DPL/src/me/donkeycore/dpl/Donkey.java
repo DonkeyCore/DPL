@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
+import me.donkeycore.dpl.exceptions.DonkeyExceptionHandler;
 import me.donkeycore.dpl.exceptions.FileDirectoryException;
 import me.donkeycore.dpl.exceptions.IncompatibleVariableTypesException;
 import me.donkeycore.dpl.exceptions.InvalidFileException;
@@ -17,6 +18,7 @@ import me.donkeycore.dpl.io.DonkeyClass;
 import me.donkeycore.dpl.io.FileCreator;
 import me.donkeycore.dpl.io.FileCreator.FileConfiguration;
 import me.donkeycore.dpl.method.IMethod;
+import me.donkeycore.dpl.plugin.PluginLoader;
 import me.donkeycore.dpl.statement.IStatement;
 import me.donkeycore.dpl.statement.Statement;
 
@@ -41,7 +43,17 @@ public final class Donkey {
 	 * @since 1.0
 	 */
 	public long startTime;
+	/**
+	 * The file that will be run
+	 * 
+	 * @since 1.0
+	 */
 	private final File file;
+	/**
+	 * The {@link DonkeyClass} object responsible for the file
+	 * 
+	 * @since 1.0
+	 */
 	private final DonkeyClass clazz;
 	
 	/**
@@ -81,14 +93,7 @@ public final class Donkey {
 	 * @since 1.0
 	 */
 	public Donkey(File read) throws NoFileException, NoReadException, FileDirectoryException, InvalidFileException {
-		/*
-		 * Shutdown hook.. maybe for later?
-		 * Runtime.getRuntime().addShutdownHook(new Thread(new Runnable(){
-		 * public void run(){
-		 * log(LogLevel.DEBUG, "Shutting down...", "Donkey");
-		 * }
-		 * }));
-		 */
+		Thread.setDefaultUncaughtExceptionHandler(new DonkeyExceptionHandler());
 		this.file = read;
 		if (!file.exists())
 			throw new NoFileException("The file " + file.getAbsolutePath() + " does not exist!");
@@ -98,6 +103,7 @@ public final class Donkey {
 			throw new FileDirectoryException("The file " + file.getAbsolutePath() + " is a directory!");
 		if (!file.getName().toLowerCase().endsWith(".donkey") && !file.getName().toLowerCase().endsWith(".dpl"))
 			throw new InvalidFileException("The file " + file.getAbsolutePath() + " is not a Donkey class!");
+		PluginLoader.getDefaultPluginLoader().getPlugins();
 		this.clazz = new DonkeyClass(this, file);
 		FileCreator.loadFilesAndFolders();
 		FileConfiguration fc = FileCreator.getFile("recentFiles", "log");
@@ -154,6 +160,22 @@ public final class Donkey {
 	 */
 	public DonkeyClass getDonkeyClass() {
 		return this.clazz;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static PluginLoader getDefaultPluginLoader() {
+		return PluginLoader.getDefaultPluginLoader();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static PluginLoader getPluginLoader() {
+		return PluginLoader.getPluginLoader();
 	}
 	
 	/**

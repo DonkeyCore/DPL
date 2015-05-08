@@ -6,7 +6,7 @@ package me.donkeycore.dpl.conditional.booleanexpression;
  * @author Adolfo Sanz De Diego
  */
 interface IBoolean {
-
+	
 	/**
 	 * @return boolean value
 	 */

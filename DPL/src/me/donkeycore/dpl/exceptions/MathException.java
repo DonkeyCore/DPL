@@ -1,6 +1,8 @@
 package me.donkeycore.dpl.exceptions;
 
-/** Thrown when there was a problem when solving a math expression
+/**
+ * Thrown when there was a problem when solving a math expression
+ * 
  * @since 1.0
  * @see MathException#MathException(String, String)
  * @see DonkeyException
@@ -8,9 +10,16 @@ package me.donkeycore.dpl.exceptions;
  */
 public class MathException extends DonkeyException {
 	
+	/**
+	 * Serial version UID for this class
+	 * 
+	 * @since 1.0
+	 */
 	private static final long serialVersionUID = 1279225541842351987L;
 	
-	/** Thrown when there was a problem solving a math expression.
+	/**
+	 * Thrown when there was a problem solving a math expression.
+	 * 
 	 * @since 1.0
 	 * @param expression The expression that failed to be solved
 	 * @param error The reason it could not be solved
@@ -20,8 +29,7 @@ public class MathException extends DonkeyException {
 		super(format(expression, error));
 	}
 	
-	private static String format(String expression, String error){
+	private static String format(String expression, String error) {
 		return "The following math expression \"" + expression + "\" failed for the reason: " + error;
 	}
-
 }

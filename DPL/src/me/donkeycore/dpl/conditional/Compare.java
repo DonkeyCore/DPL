@@ -12,50 +12,80 @@ import me.donkeycore.dpl.statement.IStatement;
 import me.donkeycore.dpl.statement.Statement;
 import me.donkeycore.dpl.variables.Variable;
 
+/**
+ * Compute a boolean value from a statement
+ * 
+ * @since 1.0
+ */
 public class Compare {
 	
+	/**
+	 * The statement being evaluated
+	 * 
+	 * @since 1.0
+	 */
 	private final Statement statement;
 	
-	public Compare(Statement statement){
+	/**
+	 * Create a new {@link Compare} object
+	 * 
+	 * @param statement The statement with the conditional statement
+	 * @see Compare
+	 * @since 1.0
+	 */
+	public Compare(Statement statement) {
 		this.statement = statement;
 	}
 	
-	public Statement getStatement(){
+	/**
+	 * Retrieve the statement with the conditional statement
+	 * 
+	 * @return The {@link Statement} passed in the constructor
+	 * @since 1.0
+	 */
+	public Statement getStatement() {
 		return statement;
 	}
 	
-	public Boolean isTrue(){
+	/**
+	 * Evaluate if the conditional is true
+	 * 
+	 * @return Whether the conditional is true
+	 * @since 1.0
+	 */
+	public Boolean isTrue() {
 		String c = statement.getStatement();
 		c = c.replaceAll(".*(if|while)\\(", "").replaceAll("\\).*", "");
 		for(Variable v : Variable.getVariables())
 			c = v.replace(c);
-		
-		for(IMethod m : Donkey.getMethods()){
-			if(c.startsWith(m.getName() + "(")){
+		for(IMethod m : Donkey.getMethods()) {
+			if (c.startsWith(m.getName() + "(")) {
 				try {
 					Object o = m.run(statement, c.replace(m.getName(), "").split(","));
-					if(o instanceof Boolean)
+					if (o instanceof Boolean)
 						return (Boolean) o;
-				}catch(DonkeyException e){Donkey.printError(e);}
+				} catch(DonkeyException e) {
+					Donkey.printError(e);
+				}
 			}
 		}
-		
-		for(IStatement s : Donkey.getStatements()){
-			if(c.equals(s.getName())){
+		for(IStatement s : Donkey.getStatements()) {
+			if (c.equals(s.getName())) {
 				try {
 					Object o = s.run(statement, c.replace(s.getName(), ""));
-					if(o instanceof Boolean)
+					if (o instanceof Boolean)
 						return (Boolean) o;
-				}catch(DonkeyException e){Donkey.printError(e);}
+				} catch(DonkeyException e) {
+					Donkey.printError(e);
+				}
 			}
 		}
-		
 		Pattern p = Pattern.compile("(\\d+|\\d+\\.\\d+)\\s*(<|>|==|!=|>=|<=)\\s*(\\d+|\\d+\\.\\d+).*");
 		Matcher m = p.matcher(c);
-		if(m.matches()){
+		if (m.matches()) {
 			Double d1 = Double.parseDouble(m.group(1));
 			Double d2 = Double.parseDouble(m.group(3));
-			switch(m.group(2)){
+			switch(m.group(2)) {
 				default:
 					break;
 				case "<":
@@ -79,13 +109,11 @@ public class Compare {
 			}
 		}
 		c = c.replaceAll("^[\\d+]?(true|false)[\\d+]$", "$1");
-		
-		try{
+		try {
 			return BooleanExpression.readLeftToRight(c).booleanValue();
-		}catch (MalformedBooleanException e){
+		} catch(MalformedBooleanException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
-	
 }

@@ -4,9 +4,21 @@ import me.donkeycore.dpl.Donkey;
 import me.donkeycore.dpl.Donkey.LogLevel;
 import me.donkeycore.dpl.exceptions.DonkeyException;
 
+/**
+ * Logs messages to console
+ * 
+ * @since 1.0
+ */
 public class Logger {
 	
-	public static class Debug implements IStatement{
+	/**
+	 * Log a debug message to console <br />
+	 * Syntax: <code>@log:debug message</code>
+	 * 
+	 * @param message The message to display
+	 * @since 1.0
+	 */
+	public static class Debug implements IStatement {
 		
 		public String getName() {
 			return "@log:debug";
@@ -16,10 +28,16 @@ public class Logger {
 			Donkey.log(LogLevel.DEBUG, args, "Script");
 			return null;
 		}
-		
 	}
 	
-	public static class Info implements IStatement{
+	/**
+	 * Logs an information message to console <br />
+	 * Syntax: <code>@log:info message</code>
+	 * 
+	 * @param message The message to display
+	 * @since 1.0
+	 */
+	public static class Info implements IStatement {
 		
 		public String getName() {
 			return "@log:info";
@@ -29,10 +47,16 @@ public class Logger {
 			Donkey.log(LogLevel.INFO, args, "Script");
 			return null;
 		}
-		
 	}
 	
-	public static class Warning implements IStatement{
+	/**
+	 * Logs a warning message to console <br />
+	 * Syntax: <code>@log:warning message</code>
+	 * 
+	 * @param message The message to display
+	 * @since 1.0
+	 */
+	public static class Warning implements IStatement {
 		
 		public String getName() {
 			return "@log:warning";
@@ -42,10 +66,16 @@ public class Logger {
 			Donkey.log(LogLevel.WARNING, args, "Script");
 			return null;
 		}
-		
 	}
 	
-	public static class Error implements IStatement{
+	/**
+	 * Log a non-fatal error message to console <br />
+	 * Syntax: <code>@log:error message</code>
+	 * 
+	 * @param message The message to display
+	 * @since 1.0
+	 */
+	public static class Error implements IStatement {
 		
 		public String getName() {
 			return "@log:error";
@@ -55,20 +85,24 @@ public class Logger {
 			Donkey.log(LogLevel.ERROR, args, "Script");
 			return null;
 		}
-		
 	}
 	
-	public static class Fatal implements IStatement{
-
+	/**
+	 * Record a fatal error message to console. Does <b>not</b> automatically exit program. <br />
+	 * Syntax: <code>@log:fatal message</code>
+	 * 
+	 * @param message The message to display
+	 * @since 1.0
+	 */
+	public static class Fatal implements IStatement {
+		
 		public String getName() {
 			return "@log:fatal";
 		}
-
+		
 		public Object run(Statement statement, String args) throws DonkeyException {
 			Donkey.log(LogLevel.FATAL, args, "Script");
 			return null;
 		}
-		
 	}
-	
 }

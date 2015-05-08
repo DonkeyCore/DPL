@@ -11,14 +11,14 @@ import me.donkeycore.dpl.exceptions.MalformedBooleanException;
  * The boolean expression class with utilities.
  */
 final class BooleanUtil {
-
+	
 	/**
 	 * Private constructor.
 	 */
 	private BooleanUtil() {
 		// Nothing
 	}
-
+	
 	/**
 	 * Valid and format the supplied boolean expression.
 	 * 
@@ -28,14 +28,13 @@ final class BooleanUtil {
 	 * @throws MalformedBooleanException
 	 *             If the supplied boolean expression is malformed.
 	 */
-	static String validAndformat(final String booleanExpression)
-		throws MalformedBooleanException {
+	static String validAndformat(final String booleanExpression) throws MalformedBooleanException {
 		validNull(booleanExpression);
 		validRegexp(booleanExpression);
 		validParenthesis(booleanExpression);
 		return format(booleanExpression);
 	}
-
+	
 	/**
 	 * Valid if the supplied boolean expression is null or void.
 	 * 
@@ -44,11 +43,10 @@ final class BooleanUtil {
 	 */
 	private static void validNull(final String booleanExpression) {
 		if (booleanExpression == null || booleanExpression.equals("")) {
-			throw new IllegalArgumentException(
-				"booleanExpression is null or void");
+			throw new IllegalArgumentException("booleanExpression is null or void");
 		}
 	}
-
+	
 	/**
 	 * Valid if the supplied boolean expression only contains allowed
 	 * characters.
@@ -58,14 +56,12 @@ final class BooleanUtil {
 	 * @throws MalformedBooleanException
 	 *             If the supplied boolean expression is malformed.
 	 */
-	private static void validRegexp(final String booleanExpression)
-		throws MalformedBooleanException {
+	private static void validRegexp(final String booleanExpression) throws MalformedBooleanException {
 		String regexp = "(\\(|\\)|\\|{2}|\\&{2}|!|(false)|(true)|\\s)+";
 		if (!booleanExpression.matches("^" + regexp + "$")) {
-			Matcher matcher = Pattern.compile(regexp)
-				.matcher(booleanExpression);
+			Matcher matcher = Pattern.compile(regexp).matcher(booleanExpression);
 			List<Integer> errorIndexes = new ArrayList<Integer>();
-			while (matcher.find()) {
+			while(matcher.find()) {
 				int start = matcher.start();
 				if (start != 0) {
 					errorIndexes.add(new Integer(start));
@@ -78,12 +74,10 @@ final class BooleanUtil {
 			if (errorIndexes.isEmpty()) {
 				errorIndexes.add(new Integer(0));
 			}
-			throw new MalformedBooleanException(
-				"Expected [ ' ' ( ) || && ! true false ]", errorIndexes,
-				booleanExpression);
+			throw new MalformedBooleanException("Expected [ ' ' ( ) || && ! true false ]", errorIndexes, booleanExpression);
 		}
 	}
-
+	
 	/**
 	 * Valid parenthesis of the supplied boolean expression.
 	 * 
@@ -92,15 +86,14 @@ final class BooleanUtil {
 	 * @throws MalformedBooleanException
 	 *             If the supplied boolean expression have wrong parenthesis.
 	 */
-	private static void validParenthesis(final String booleanExpression)
-		throws MalformedBooleanException {
+	private static void validParenthesis(final String booleanExpression) throws MalformedBooleanException {
 		int length = booleanExpression.length();
 		int openParenthesis = 0;
 		int closeParenthesis = 0;
 		int lastOpenParenthesisIndex = 0;
-		for (int i = 0; i < length; i++) {
+		for(int i = 0; i < length; i++) {
 			char charAt = booleanExpression.charAt(i);
-			switch (charAt) {
+			switch(charAt) {
 				case '(':
 					lastOpenParenthesisIndex = i;
 					openParenthesis++;
@@ -108,9 +101,7 @@ final class BooleanUtil {
 				case ')':
 					closeParenthesis++;
 					if (openParenthesis < closeParenthesis) {
-						throw new MalformedBooleanException(
-							"Have a close parenthesis without an open parenthesis",
-							i, booleanExpression);
+						throw new MalformedBooleanException("Have a close parenthesis without an open parenthesis", i, booleanExpression);
 					}
 					break;
 				default:
@@ -118,12 +109,10 @@ final class BooleanUtil {
 			}
 		}
 		if (openParenthesis > closeParenthesis) {
-			throw new MalformedBooleanException(
-				"Have an open parenthesis without a close parenthesis",
-				lastOpenParenthesisIndex, booleanExpression);
+			throw new MalformedBooleanException("Have an open parenthesis without a close parenthesis", lastOpenParenthesisIndex, booleanExpression);
 		}
 	}
-
+	
 	/**
 	 * Format the the supplied boolean expression.
 	 * 
@@ -132,10 +121,7 @@ final class BooleanUtil {
 	 * @return The boolean expression formated.
 	 */
 	private static String format(final String booleanExpression) {
-		String formatedBooleanExpression = booleanExpression.toUpperCase()
-			.replaceAll("TRUE", "T").replaceAll("FALSE", "F").replaceAll(
-				"\\|\\|", "|").replaceAll("&&", "&");
+		String formatedBooleanExpression = booleanExpression.toUpperCase().replaceAll("TRUE", "T").replaceAll("FALSE", "F").replaceAll("\\|\\|", "|").replaceAll("&&", "&");
 		return formatedBooleanExpression;
 	}
-
 }

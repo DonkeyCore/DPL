@@ -37,7 +37,7 @@ import me.donkeycore.dpl.exceptions.MalformedBooleanException;
  * @author Adolfo Sanz De Diego
  */
 public abstract class BooleanExpression implements IBoolean {
-
+	
 	/**
 	 * Constructor.
 	 */
@@ -56,11 +56,10 @@ public abstract class BooleanExpression implements IBoolean {
 	 * @throws MalformedBooleanException
 	 *             If the supplied boolean expression is malformed.
 	 */
-	public static BooleanExpression readLeftToRight(
-		final String booleanExpression) throws MalformedBooleanException {
+	public static BooleanExpression readLeftToRight(final String booleanExpression) throws MalformedBooleanException {
 		return new BooleanExpressionLR(booleanExpression);
 	}
-
+	
 	/**
 	 * Returns a {@link BooleanExpression} that read the Boolean String
 	 * Expression from right to left.
@@ -72,9 +71,7 @@ public abstract class BooleanExpression implements IBoolean {
 	 * @throws MalformedBooleanException
 	 *             If the supplied boolean expression is malformed.
 	 */
-	public static BooleanExpression readRightToLeft(
-		final String booleanExpression) throws MalformedBooleanException {
+	public static BooleanExpression readRightToLeft(final String booleanExpression) throws MalformedBooleanException {
 		return new BooleanExpressionRL(booleanExpression);
 	}
-
 }

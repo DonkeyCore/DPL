@@ -41,7 +41,17 @@ public abstract class Variable implements IVariable {
 		vars.add(v);
 	}
 	
+	/**
+	 * The name of a variable
+	 * 
+	 * @since 1.0
+	 */
 	private final String key;
+	/**
+	 * The value that this variable is set to
+	 * 
+	 * @since 1.0
+	 */
 	private Object value;
 	
 	/**

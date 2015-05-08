@@ -6,12 +6,12 @@ package me.donkeycore.dpl.conditional.booleanexpression;
  * @author Adolfo Sanz De Diego
  */
 final class Boolean implements IBoolean {
-
+	
 	/**
 	 * The boolean value.
 	 */
 	private boolean booleanValue;
-
+	
 	/**
 	 * Constructor.
 	 * 
@@ -21,7 +21,7 @@ final class Boolean implements IBoolean {
 	Boolean(final boolean newBooleanValue) {
 		this.booleanValue = newBooleanValue;
 	}
-
+	
 	/**
 	 * Returns the boolean value supplied in the constructor.
 	 * 
@@ -30,7 +30,7 @@ final class Boolean implements IBoolean {
 	public boolean booleanValue() {
 		return this.booleanValue;
 	}
-
+	
 	/**
 	 * A String representation of the boolean value supplied in the constructor.
 	 * 
@@ -39,5 +39,4 @@ final class Boolean implements IBoolean {
 	public String toString() {
 		return "" + this.booleanValue;
 	}
-
 }

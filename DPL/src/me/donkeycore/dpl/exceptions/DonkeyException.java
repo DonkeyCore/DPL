@@ -1,6 +1,8 @@
 package me.donkeycore.dpl.exceptions;
 
-/** Represents an instance of an exception that happens.
+/**
+ * Represents an instance of an exception that happens.
+ * 
  * @since 1.0
  * @see DonkeyException#DonkeyException(String)
  * @see FileDirectoryException
@@ -16,16 +18,22 @@ package me.donkeycore.dpl.exceptions;
  * @see TypeDoesNotExistException
  * @see VariableAlreadyDeclaredException
  */
-public abstract class DonkeyException extends Throwable{
+public abstract class DonkeyException extends Throwable {
 	
+	/**
+	 * Serial version UID for this class
+	 * 
+	 * @since 1.0
+	 */
 	private static final long serialVersionUID = -8134493745328001452L;
 	
-	/** Represents an instance of an exception that happens.
+	/**
+	 * Represents an instance of an exception that happens.
+	 * 
 	 * @since 1.0
 	 * @see DonkeyException
 	 */
-	public DonkeyException(String msg){
+	public DonkeyException(String msg) {
 		super(msg);
 	}
-	
 }

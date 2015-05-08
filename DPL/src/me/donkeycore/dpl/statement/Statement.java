@@ -33,10 +33,36 @@ import me.donkeycore.dpl.variables.Variable;
  */
 public final class Statement {
 	
+	/**
+	 * File being read
+	 * 
+	 * @since 1.0
+	 */
 	private static File file;
+	/**
+	 * List of line numbers that will be ignored
+	 * 
+	 * @since 1.0
+	 */
 	private static final List<Integer> doNotRun = new ArrayList<Integer>();
+	/**
+	 * Array of valid statements
+	 * 
+	 * @since 1.0
+	 */
 	private static IStatement[] statements;
+	/**
+	 * Array of valid methods
+	 * 
+	 * @since 1.0
+	 */
 	private static IMethod[] methods;
+	/**
+	 * Error number to display when the program terminates
+	 * 
+	 * @since 1.0
+	 */
+	public static int errno = 0;
 	
 	//private static Donkey donkey;
 	/**
@@ -222,8 +248,23 @@ public final class Statement {
 		 * return donkey;
 		 * }
 		 */
+	/**
+	 * Statement in string form, parsed and edited
+	 * 
+	 * @since 1.0
+	 */
 	private String statement;
+	/**
+	 * Statement in string form, unparsed and unedited
+	 * 
+	 * @since 1.0
+	 */
 	private final String raw;
+	/**
+	 * Line number of a statement
+	 * 
+	 * @since 1.0
+	 */
 	private final int line;
 	
 	/** The line of the attempt/fail block this {@link Statement} is inside. Defaults to <code>0</code> if not in an attempt/fail block. */
@@ -492,5 +533,4 @@ public final class Statement {
 			return string.substring(0, index - 1);
 		return string.substring(0, index);
 	}
-	
 }

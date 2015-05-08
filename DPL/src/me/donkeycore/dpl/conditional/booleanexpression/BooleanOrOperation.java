@@ -6,17 +6,16 @@ package me.donkeycore.dpl.conditional.booleanexpression;
  * @author Adolfo Sanz De Diego
  */
 final class BooleanOrOperation implements IBoolean {
-
+	
 	/**
 	 * The first {@link IBoolean}.
 	 */
 	private IBoolean iBoolean1;
-
 	/**
 	 * The second {@link IBoolean}.
 	 */
 	private IBoolean iBoolean2;
-
+	
 	/**
 	 * Constructor.
 	 * 
@@ -34,9 +33,8 @@ final class BooleanOrOperation implements IBoolean {
 			throw new IllegalArgumentException("newIBoolean2 is null");
 		}
 		this.iBoolean2 = newIBoolean2;
-
 	}
-
+	
 	/**
 	 * Evaluate the OR operation between the first {@link IBoolean} and the
 	 * second {@link IBoolean} supplied in the constructor.
@@ -48,12 +46,11 @@ final class BooleanOrOperation implements IBoolean {
 	 * @see IBoolean#booleanValue()
 	 */
 	public boolean booleanValue() {
-		return (this.iBoolean1.booleanValue() || this.iBoolean2.booleanValue());
+		return(this.iBoolean1.booleanValue() || this.iBoolean2.booleanValue());
 	}
-
+	
 	/**
-	 * A String representation of the OR operation between the first
-	 * {@link IBoolean} and the second {@link IBoolean} supplied in the
+	 * A String representation of the OR operation between the first {@link IBoolean} and the second {@link IBoolean} supplied in the
 	 * constructor.
 	 * 
 	 * @see java.lang.Object#toString()
@@ -67,5 +64,4 @@ final class BooleanOrOperation implements IBoolean {
 		buffer.append(")");
 		return buffer.toString();
 	}
-
 }

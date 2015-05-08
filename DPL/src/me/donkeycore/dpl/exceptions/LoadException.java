@@ -1,6 +1,8 @@
 package me.donkeycore.dpl.exceptions;
 
-/** Thrown when a statement, method, or variable is unable to load
+/**
+ * Thrown when a statement, method, or variable is unable to load
+ * 
  * @since 1.0
  * @see LoadException#LoadException(String)
  * @see DonkeyException
@@ -8,9 +10,16 @@ package me.donkeycore.dpl.exceptions;
  */
 public class LoadException extends DonkeyException {
 	
+	/**
+	 * Serial version UID for this class
+	 * 
+	 * @since 1.0
+	 */
 	private static final long serialVersionUID = -3776196857939504690L;
 	
-	/** Thrown when a statement, method, or variable is unable to load
+	/**
+	 * Thrown when a statement, method, or variable is unable to load
+	 * 
 	 * @param msg An explanation of why the object could not load
 	 * @since 1.0
 	 * @see LoadException
@@ -18,5 +27,4 @@ public class LoadException extends DonkeyException {
 	public LoadException(String msg) {
 		super(msg);
 	}
-	
 }

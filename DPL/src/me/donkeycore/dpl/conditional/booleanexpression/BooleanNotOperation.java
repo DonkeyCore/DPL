@@ -6,12 +6,12 @@ package me.donkeycore.dpl.conditional.booleanexpression;
  * @author Adolfo Sanz De Diego
  */
 final class BooleanNotOperation implements IBoolean {
-
+	
 	/**
 	 * The {@link IBoolean}.
 	 */
 	private IBoolean iBoolean;
-
+	
 	/**
 	 * Constructor.
 	 * 
@@ -24,24 +24,21 @@ final class BooleanNotOperation implements IBoolean {
 		}
 		this.iBoolean = newIBoolean;
 	}
-
+	
 	/**
 	 * Evaluate the NOT operation of the {@link IBoolean} supplied in the
 	 * constructor.
 	 * 
-	 * @return <code>true</code> if the boolean value of the {@link IBoolean}
-	 *         supplied in the constructor is <code>false</code> or
-	 *         <code>false</code> otherwise.
+	 * @return <code>true</code> if the boolean value of the {@link IBoolean} supplied in the constructor is <code>false</code> or <code>false</code> otherwise.
 	 * 
 	 * @see IBoolean#booleanValue()
 	 */
 	public boolean booleanValue() {
-		return (!this.iBoolean.booleanValue());
+		return(!this.iBoolean.booleanValue());
 	}
-
+	
 	/**
-	 * A String representation of the NOT operation of the {@link IBoolean}
-	 * supplied in the constructor.
+	 * A String representation of the NOT operation of the {@link IBoolean} supplied in the constructor.
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
