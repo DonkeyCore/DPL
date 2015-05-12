@@ -364,7 +364,7 @@ public final class Statement {
 	 * @throws ScriptException If a math expression is invalid
 	 */
 	public synchronized final Object runStatement(boolean force) throws DonkeyException, ScriptException {
-		if (statement.startsWith("//") || (!canRun(getLineNumber()) && !force) || statement.equalsIgnoreCase("{") || statement.equalsIgnoreCase("}") || statement.equalsIgnoreCase(""))
+		if (statement.startsWith("//") || statement.startsWith("#") || (!canRun(getLineNumber()) && !force) || statement.equalsIgnoreCase("{") || statement.equalsIgnoreCase("}") || statement.equalsIgnoreCase(""))
 			return null;
 		for(Variable v : Variable.getVariables())
 			statement = v.replace(statement);
