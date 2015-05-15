@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import me.donkeycore.dpl.exceptions.DonkeyExceptionHandler;
 import me.donkeycore.dpl.exceptions.FileDirectoryException;
 import me.donkeycore.dpl.exceptions.IncompatibleVariableTypesException;
 import me.donkeycore.dpl.exceptions.InvalidFileException;
@@ -18,6 +17,7 @@ import me.donkeycore.dpl.io.DonkeyClass;
 import me.donkeycore.dpl.io.FileCreator;
 import me.donkeycore.dpl.io.FileCreator.FileConfiguration;
 import me.donkeycore.dpl.method.IMethod;
+import me.donkeycore.dpl.plugin.DPlugin;
 import me.donkeycore.dpl.plugin.PluginLoader;
 import me.donkeycore.dpl.statement.IStatement;
 import me.donkeycore.dpl.statement.Statement;
@@ -57,6 +57,13 @@ public final class Donkey {
 	private final DonkeyClass clazz;
 	
 	/**
+	 * An array of registered {@link DPlugin} objects
+	 * 
+	 * @since 1.0
+	 */
+	private final DPlugin[] plugins;
+	
+	/**
 	 * If given a null argument or 0 parameters, this will open a GUI for choosing a script. Given one or more file paths, this will run the code of those files. <br>
 	 * This method will instantly run each file's code and is useful for running several files of code, where creating a new {@link Donkey} object will allow you to access methods being used and is better for executing only one file's code.
 	 * 
@@ -73,9 +80,9 @@ public final class Donkey {
 	 * @since 1.0
 	 */
 	public static void main(String... args) throws NoFileException, NoReadException, FileDirectoryException, InvalidFileException, InvalidStatementException, TypeDoesNotExistException, IncompatibleVariableTypesException, VariableAlreadyDeclaredException {
-		if (args == null || args.length == 0) {
+		if (args == null || args.length == 0)
 			new ScriptGUI();
-		} else {
+		else {
 			for(String file : args)
 				new Donkey(new File(file)).runCode();
 		}
@@ -94,7 +101,7 @@ public final class Donkey {
 	 * @since 1.0
 	 */
 	public Donkey(File read) throws NoFileException, NoReadException, FileDirectoryException, InvalidFileException {
-		Thread.setDefaultUncaughtExceptionHandler(new DonkeyExceptionHandler());
+		Thread.setDefaultUncaughtExceptionHandler((t, e) -> printError(e));
 		this.file = read;
 		if (!file.exists())
 			throw new NoFileException("The file " + file.getAbsolutePath() + " does not exist!");
@@ -104,7 +111,8 @@ public final class Donkey {
 			throw new FileDirectoryException("The file " + file.getAbsolutePath() + " is a directory!");
 		if (!file.getName().toLowerCase().endsWith(".donkey") && !file.getName().toLowerCase().endsWith(".dpl"))
 			throw new InvalidFileException("The file " + file.getAbsolutePath() + " is not a Donkey class!");
-		PluginLoader.getDefaultPluginLoader().getPlugins();
+		PluginLoader.stopAccepting();
+		plugins = PluginLoader.getPluginLoader().getPlugins();
 		this.clazz = new DonkeyClass(this, file);
 		FileCreator.loadFilesAndFolders();
 		FileConfiguration fc = FileCreator.getFile("recentFiles", "log");
@@ -124,6 +132,12 @@ public final class Donkey {
 			fc.withoutLastLine().withCode(file.getAbsolutePath());
 		} else
 			fc.withCode(file.getAbsolutePath());
+	}
+	
+	public DPlugin[] getPlugins() {
+		DPlugin[] p = new DPlugin[plugins.length];
+		System.arraycopy(plugins, 0, p, 0, plugins.length);
+		return p;
 	}
 	
 	/**
@@ -198,6 +212,7 @@ public final class Donkey {
 			if (!s.getClassName().startsWith("java"))
 				System.err.println("Error #" + id++ + ": " + s.getClassName() + " at line " + s.getLineNumber() + " in " + s.getMethodName());
 		}
+		System.exit(1);
 	}
 	
 	/**

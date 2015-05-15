@@ -32,6 +32,14 @@ public class PluginLoader {
 	private PluginLoader() {}
 	
 	/**
+	 * Whether to accept more plugin loaders
+	 * 
+	 * @see PluginLoader
+	 * @since 1.0
+	 */
+	private boolean accept = true;
+	
+	/**
 	 * The default plugin loader
 	 * 
 	 * @since 1.0
@@ -57,6 +65,17 @@ public class PluginLoader {
 	}
 	
 	/**
+	 * Called by {@link Donkey} to stop accepting new plugin loaders
+	 * 
+	 * @return The current plugin loader instance
+	 */
+	public static final PluginLoader stopAccepting() {
+		getDefaultPluginLoader().accept = false;
+		loader.accept = false;
+		return loader;
+	}
+	
+	/**
 	 * Retrieve the default {@link PluginLoader} class. It always points to this specific class.
 	 * 
 	 * @return The default plugin loader
@@ -77,7 +96,8 @@ public class PluginLoader {
 	 * @since 1.0
 	 */
 	public static final PluginLoader getPluginLoader() {
-		getDefaultPluginLoader();
+		if(loader == null)
+			getDefaultPluginLoader();
 		return loader;
 	}
 	
@@ -88,12 +108,20 @@ public class PluginLoader {
 	 * @return The old plugin loader
 	 * @since 1.0
 	 */
+	//This method is never actually called by Donkey. Use it when making a wrapper if you need it.
 	public static final PluginLoader setPluginLoader(PluginLoader l) {
 		PluginLoader old = getPluginLoader();
+		if(!old.accept)
+			throw new IllegalStateException("Cannot change PluginLoader after startup!");
 		loader = l;
 		return old;
 	}
 	
+	/**
+	 * An {@link ArrayList} of registered {@link DPlugin} objects
+	 * 
+	 * @since 1.0
+	 */
 	private static final List<DPlugin> plugins = new ArrayList<DPlugin>();
 	
 	/**
@@ -117,7 +145,7 @@ public class PluginLoader {
 			
 			@Override
 			public boolean accept(File dir, String name) {
-				return name.toLowerCase().endsWith("\\.dplugin");
+				return name.toLowerCase().endsWith(".dplugin");
 			}
 		};
 		URLClassLoader u = null;
@@ -134,11 +162,13 @@ public class PluginLoader {
 					while(en.hasMoreElements()) {
 						JarEntry e = en.nextElement();
 						String n = e.getName();
-						if (n.endsWith("\\.class")) {
+						if (n.endsWith(".class") && !n.contains("$")) {
 							String cn = n.replace('/', '.').substring(0, n.length() - 6);
-							Class<?> c = Class.forName(cn);
+							Class<?> c = Class.forName(cn, false, u);
 							if (c.getSuperclass().getName().equals(DPlugin.class.getName())) {
 								Object o = c.getConstructor().newInstance();
+								if(o instanceof DPlugin)
+									((DPlugin) o).onLoad();
 								plugins.add((DPlugin) o);
 							}
 						}
@@ -158,5 +188,27 @@ public class PluginLoader {
 				Donkey.printError(e);
 			}
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (accept ? 1231 : 1237);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PluginLoader other = (PluginLoader) obj;
+		if (accept != other.accept)
+			return false;
+		return true;
 	}
 }

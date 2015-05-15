@@ -35,7 +35,7 @@ public abstract class DPlugin {
 	 */
 	public void loadStatement(Class<? extends IStatement> c) throws LoadException {
 		try {
-			Statement.addStatement(c.getConstructor().newInstance());
+			Statement.addStatement(c.newInstance());
 		} catch(Throwable t) {
 			throw new LoadException(t.getMessage());
 		}

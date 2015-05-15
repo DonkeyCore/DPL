@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.script.ScriptException;
@@ -114,7 +115,7 @@ public final class Statement {
 	 * @since 1.0
 	 */
 	public static void addStatement(IStatement statement) {
-		List<IStatement> s = Arrays.asList(getStatements());
+		List<IStatement> s = new LinkedList<IStatement>(Arrays.asList(getStatements()));
 		s.add(statement);
 		statements = s.toArray(new IStatement[s.size()]);
 	}
@@ -126,7 +127,7 @@ public final class Statement {
 	 * @since 1.0
 	 */
 	public static void addMethod(IMethod method) {
-		List<IMethod> m = Arrays.asList(getMethods());
+		List<IMethod> m = new LinkedList<IMethod>(Arrays.asList(getMethods()));
 		m.add(method);
 		methods = m.toArray(new IMethod[m.size()]);
 	}
