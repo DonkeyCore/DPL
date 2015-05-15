@@ -1,10 +1,10 @@
 package me.donkeycore.dpl.statement;
 
 /**
- * Display a message in the console, with a linebreak. <br />
- * Syntax: <code>println message</code>
+ * Display a message in the console, with a linebreak. <br>
+ * Syntax: <code>println message</code><br>
  * 
- * @param message The message to display, followed by a newline
+ * <b>message</b> The message to display, followed by a newline
  * @since 1.0
  */
 public class Println implements IStatement {

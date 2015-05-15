@@ -5,10 +5,10 @@ import me.donkeycore.dpl.exceptions.DonkeyException;
 import me.donkeycore.dpl.statement.Statement;
 
 /**
- * Evaluate a math expression using Reverse Polish Notation <br />
- * Syntax: <code>@rpn(expression)</code>
+ * Evaluate a math expression using Reverse Polish Notation <br>
+ * Syntax: <code>@rpn(expression)</code><br>
  * 
- * @param expression The expression being evaluated
+ * <b>expression</b> The expression being evaluated
  * @since 1.0
  */
 public class RPN implements IMethod {

@@ -8,7 +8,7 @@ import me.donkeycore.dpl.Donkey;
 import me.donkeycore.dpl.exceptions.DonkeyException;
 
 /**
- * Receive raw input from the user <br />
+ * Receive raw input from the user <br>
  * Syntax: <code>@input</code>
  * 
  * @since 1.0

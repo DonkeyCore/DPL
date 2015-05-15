@@ -57,6 +57,7 @@ public class Expression {
 	 * 
 	 * @param s The string to evaluate
 	 * @return A double representation of the answer
+	 * @throws MathException If there was an error evaluating the math expression
 	 * @since 1.0
 	 */
 	public static double evaluateRPN(String s) throws MathException {

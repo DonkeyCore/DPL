@@ -3,7 +3,7 @@ package me.donkeycore.dpl.statement;
 import me.donkeycore.dpl.exceptions.DonkeyException;
 
 /**
- * Interface for statements to extend
+ * Interface for statements
  * 
  * @since 1.0
  */
@@ -11,17 +11,18 @@ public interface IStatement {
 	
 	/**
 	 * Retrieve the name of the method <h1>Example:</h1> <code>
-	 * public String getName(){ <br/>
-	 * return "example"; <br/>
-	 * }<br/>
+	 * public String getName(){ <br>
+	 * return "example"; <br>
+	 * }<br>
 	 * </code> <h1>Can be called as:</h1> <code>example ...;</code>
 	 * 
+	 * @return The name of the statement
 	 * @since 1.0
 	 */
 	public String getName();
 	
 	/**
-	 * Run the method. Feel free to throw a {@link StatementUnsatisfiedException} if you want to ;)
+	 * Run the method. Throw a {@link me.donkeycore.dpl.exceptions.StatementUnsatisfiedException StatementUnsatisfiedException} if needed
 	 * 
 	 * @param statement The {@link Statement} that called the statement
 	 * @param args The arguments the method has been given

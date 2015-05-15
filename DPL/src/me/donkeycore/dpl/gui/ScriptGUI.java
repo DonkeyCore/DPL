@@ -33,7 +33,7 @@ import me.donkeycore.dpl.io.FileCreator;
 import me.donkeycore.dpl.io.FileCreator.FileConfiguration;
 
 /**
- * GUI selection to select scripts and run them. Create a new ScriptGUI simply by using <code>new ScriptGUI();</code><br />
+ * GUI selection to select scripts and run them. Create a new ScriptGUI simply by using <code>new ScriptGUI();</code><br>
  * Automatically created by {@link Donkey} when given no file as an argument
  * 
  * @see Donkey

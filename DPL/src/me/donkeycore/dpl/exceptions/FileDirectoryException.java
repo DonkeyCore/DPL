@@ -20,6 +20,7 @@ public class FileDirectoryException extends DonkeyException {
 	/**
 	 * Thrown when a Donkey class file is a directory.
 	 * 
+	 * @param msg The message to be displayed at runtime
 	 * @since 1.0
 	 * @see FileDirectoryException
 	 */

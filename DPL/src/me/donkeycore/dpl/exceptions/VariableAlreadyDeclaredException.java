@@ -6,7 +6,6 @@ import me.donkeycore.dpl.variables.Variable;
  * Thrown when a variable that is already defined is being declared
  * 
  * @since 1.0
- * @see VariableAlreadyDeclaredException#VariableAlreadyDeclaredException(String, String)
  * @see DonkeyException
  * @see DonkeyException#DonkeyException(String)
  */

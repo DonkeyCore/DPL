@@ -57,7 +57,7 @@ public final class Donkey {
 	private final DonkeyClass clazz;
 	
 	/**
-	 * If given a null argument or 0 parameters, this will open a GUI for choosing a script. Given one or more file paths, this will run the code of those files. <br/>
+	 * If given a null argument or 0 parameters, this will open a GUI for choosing a script. Given one or more file paths, this will run the code of those files. <br>
 	 * This method will instantly run each file's code and is useful for running several files of code, where creating a new {@link Donkey} object will allow you to access methods being used and is better for executing only one file's code.
 	 * 
 	 * @param args The array of files to execute
@@ -82,14 +82,15 @@ public final class Donkey {
 	}
 	
 	/**
-	 * Create a Donkey class from a file. <br/>
+	 * Create a Donkey class from a file. <br>
 	 * Creating a new {@link Donkey} object is useful for accessing methods being used and only having one file to execute, where using the {@link Donkey#main(String[])} method is useful for having multiple files to execute without a need for other methods.
 	 * 
-	 * @see Donkey#main(String[])
+	 * @param read The file to read from
 	 * @throws NoFileException If the file does not exist
 	 * @throws NoReadException If the file cannot be read
 	 * @throws FileDirectoryException If the file is a directory
 	 * @throws InvalidFileException If the file is not a .donkey file or is not a valid Donkey class file
+	 * @see Donkey#main(String[])
 	 * @since 1.0
 	 */
 	public Donkey(File read) throws NoFileException, NoReadException, FileDirectoryException, InvalidFileException {
@@ -163,16 +164,18 @@ public final class Donkey {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Retrieve the default plugin loader
+	 * @return The default plugin loader
+	 * @since 1.0
 	 */
 	public static PluginLoader getDefaultPluginLoader() {
 		return PluginLoader.getDefaultPluginLoader();
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Retrieve the current plugin loader
+	 * @return The current plugin loader
+	 * @since 1.0
 	 */
 	public static PluginLoader getPluginLoader() {
 		return PluginLoader.getPluginLoader();
@@ -200,6 +203,7 @@ public final class Donkey {
 	/**
 	 * Get all the statements in an array from the {@link Statement} class
 	 * 
+	 * @return An array of registered {@link IStatement} objects
 	 * @see Statement#getStatements()
 	 * @since 1.0
 	 */
@@ -210,6 +214,7 @@ public final class Donkey {
 	/**
 	 * Get all the methods in an array from the {@link Statement} class
 	 * 
+	 * @return An array of registered {@link IMethod} objects
 	 * @see Statement#getMethods()
 	 * @since 1.0
 	 */
@@ -260,6 +265,8 @@ public final class Donkey {
 	/**
 	 * Log a message to the console. Same effect as calling {@link Donkey#log(LogLevel, String, String) log(level, message, "Plugin")}
 	 * 
+	 * @param level The level to log the message as
+	 * @param message The message to log
 	 * @see Donkey#debug(String)
 	 * @see Donkey#info(String)
 	 * @see Donkey#warning(String)
@@ -275,6 +282,9 @@ public final class Donkey {
 	/**
 	 * Log a message to the console, with a prefix
 	 * 
+	 * @param level The level to log the message as
+	 * @param message The message to log
+	 * @param prefix A custom prefix for the log message
 	 * @see Donkey#debug(String)
 	 * @see Donkey#info(String)
 	 * @see Donkey#warning(String)
@@ -303,7 +313,8 @@ public final class Donkey {
 	/**
 	 * Log a message to the console if {@link Donkey#debug} is true
 	 * 
-	 * @see Donkey#log(String)
+	 * @param message The message to log
+	 * @see Donkey#log(LogLevel, String)
 	 * @see Donkey#info(String)
 	 * @see Donkey#warning(String)
 	 * @see Donkey#error(String)
@@ -319,7 +330,8 @@ public final class Donkey {
 	/**
 	 * Log a message to the console
 	 * 
-	 * @see Donkey#log(String)
+	 * @param message The message to log
+	 * @see Donkey#log(LogLevel, String)
 	 * @see Donkey#debug(String)
 	 * @see Donkey#warning(String)
 	 * @see Donkey#error(String)
@@ -334,7 +346,8 @@ public final class Donkey {
 	/**
 	 * Log a message to the console
 	 * 
-	 * @see Donkey#log(String)
+	 * @param message The message to log
+	 * @see Donkey#log(LogLevel, String)
 	 * @see Donkey#debug(String)
 	 * @see Donkey#info(String)
 	 * @see Donkey#error(String)
@@ -349,7 +362,8 @@ public final class Donkey {
 	/**
 	 * Log a message to the console
 	 * 
-	 * @see Donkey#log(String)
+	 * @param message The message to log
+	 * @see Donkey#log(LogLevel, String)
 	 * @see Donkey#debug(String)
 	 * @see Donkey#info(String)
 	 * @see Donkey#warning(String)
@@ -364,7 +378,8 @@ public final class Donkey {
 	/**
 	 * Log a message to the console
 	 * 
-	 * @see Donkey#log(String)
+	 * @param message The message to log
+	 * @see Donkey#log(LogLevel, String)
 	 * @see Donkey#debug(String)
 	 * @see Donkey#info(String)
 	 * @see Donkey#warning(String)
@@ -379,7 +394,7 @@ public final class Donkey {
 	/**
 	 * LogLevels for {@link Donkey#log(LogLevel, String)}
 	 * 
-	 * @see Donkey#log(String)
+	 * @see Donkey#log(LogLevel, String)
 	 * @see Donkey#debug(String)
 	 * @see Donkey#info(String)
 	 * @see Donkey#warning(String)

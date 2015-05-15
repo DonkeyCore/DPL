@@ -9,9 +9,9 @@ import me.donkeycore.dpl.variables.Variable;
 /**
  * The main class of which all DPL plugins extend from. Provides several methods to load objects.
  * 
- * @see {@link DPlugin#loadStatement(Class)}
- * @see {@link DPlugin#loadMethod(Class)}
- * @see {@link DPlugin#loadVariable(Class)}
+ * @see DPlugin#loadStatement(Class)
+ * @see DPlugin#loadMethod(Class)
+ * @see DPlugin#loadVariable(Class)
  * @since 1.0
  */
 public abstract class DPlugin {
@@ -19,9 +19,9 @@ public abstract class DPlugin {
 	/**
 	 * Called when the plugin is initialized. Used to register statements, methods, and variables.
 	 * 
-	 * @see {@link DPlugin#loadStatement(Class)}
-	 * @see {@link DPlugin#loadMethod(Class)}
-	 * @see {@link DPlugin#loadVariable(Class)}
+	 * @see DPlugin#loadStatement(Class)
+	 * @see DPlugin#loadMethod(Class)
+	 * @see DPlugin#loadVariable(Class)
 	 * @since 1.0
 	 */
 	public abstract void onLoad();

@@ -5,10 +5,9 @@ import java.sql.Statement;
 /**
  * Thrown when a statement is invalid.
  * 
- * @since 1.0
- * @see InvalidStatementException#InvalidStatementException(String, Integer)
  * @see DonkeyException
  * @see DonkeyException#DonkeyException(String)
+ * @since 1.0
  */
 public class InvalidStatementException extends DonkeyException {
 	
@@ -23,10 +22,10 @@ public class InvalidStatementException extends DonkeyException {
 	/**
 	 * Thrown when a statement is invalid.
 	 * 
-	 * @since 1.0
-	 * @param msg The statement
-	 * @param line The line number that the statement is on
+	 * @param statement The statement with the error
+	 * @param line The line number that the error occurred on
 	 * @see InvalidStatementException
+	 * @since 1.0
 	 */
 	public InvalidStatementException(String statement, int line) {
 		super(format(statement, line));
@@ -35,14 +34,22 @@ public class InvalidStatementException extends DonkeyException {
 	/**
 	 * Thrown when a statement is invalid.
 	 * 
-	 * @since 1.0
-	 * @param msg The message
+	 * @param message The message to be displayed at runtime
 	 * @see InvalidStatementException
+	 * @since 1.0
 	 */
 	public InvalidStatementException(String message) {
 		super(message);
 	}
 	
+	/**
+	 * Format a statement and line number to to an error message
+	 * @param statement The statement with the error
+	 * @param l The line number that the error occurred on
+	 * @return The formatted message
+	 * @see InvalidStatementException
+	 * @since 1.0
+	 */
 	private static String format(String statement, int l) {
 		return "Invalid statement at line " + l + ": " + statement;
 	}

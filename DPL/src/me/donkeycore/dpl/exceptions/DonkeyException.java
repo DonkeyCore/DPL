@@ -30,6 +30,7 @@ public abstract class DonkeyException extends Throwable {
 	/**
 	 * Represents an instance of an exception that happens.
 	 * 
+	 * @param msg The message to be displayed at runtime
 	 * @since 1.0
 	 * @see DonkeyException
 	 */

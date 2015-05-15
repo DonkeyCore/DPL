@@ -12,10 +12,11 @@ import me.donkeycore.dpl.exceptions.DonkeyException;
 public class Logger {
 	
 	/**
-	 * Log a debug message to console <br />
-	 * Syntax: <code>@log:debug message</code>
+	 * Log a debug message to console <br>
+	 * Syntax: <code>@log:debug message</code><br>
 	 * 
-	 * @param message The message to display
+	 * <b>message</b> The message to display
+	 * 
 	 * @since 1.0
 	 */
 	public static class Debug implements IStatement {
@@ -31,10 +32,11 @@ public class Logger {
 	}
 	
 	/**
-	 * Logs an information message to console <br />
-	 * Syntax: <code>@log:info message</code>
+	 * Logs an information message to console <br>
+	 * Syntax: <code>@log:info message</code><br>
 	 * 
-	 * @param message The message to display
+	 * <b>message</b> The message to display
+	 * 
 	 * @since 1.0
 	 */
 	public static class Info implements IStatement {
@@ -50,10 +52,11 @@ public class Logger {
 	}
 	
 	/**
-	 * Logs a warning message to console <br />
-	 * Syntax: <code>@log:warning message</code>
+	 * Logs a warning message to console <br>
+	 * Syntax: <code>@log:warning message</code><br>
 	 * 
-	 * @param message The message to display
+	 * <b>message</b> The message to display
+	 * 
 	 * @since 1.0
 	 */
 	public static class Warning implements IStatement {
@@ -69,10 +72,11 @@ public class Logger {
 	}
 	
 	/**
-	 * Log a non-fatal error message to console <br />
-	 * Syntax: <code>@log:error message</code>
+	 * Log a non-fatal error message to console <br>
+	 * Syntax: <code>@log:error message</code><br>
 	 * 
-	 * @param message The message to display
+	 * <b>message</b> The message to display
+	 * 
 	 * @since 1.0
 	 */
 	public static class Error implements IStatement {
@@ -88,10 +92,11 @@ public class Logger {
 	}
 	
 	/**
-	 * Record a fatal error message to console. Does <b>not</b> automatically exit program. <br />
-	 * Syntax: <code>@log:fatal message</code>
+	 * Record a fatal error message to console. Does <b>not</b> automatically exit program. <br>
+	 * Syntax: <code>@log:fatal message</code><br>
 	 * 
-	 * @param message The message to display
+	 * <b>message</b> The message to display
+	 * 
 	 * @since 1.0
 	 */
 	public static class Fatal implements IStatement {

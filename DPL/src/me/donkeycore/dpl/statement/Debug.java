@@ -5,10 +5,11 @@ import me.donkeycore.dpl.exceptions.DonkeyException;
 import me.donkeycore.dpl.exceptions.StatementUnsatisfiedException;
 
 /**
- * Control whether debug messages should be displayed <br />
- * Syntax: <code>@debug bool</code>
+ * Control whether debug messages should be displayed <br>
+ * Syntax: <code>@debug bool</code><br>
  * 
- * @param bool A boolean value, determining if debug messages appear
+ * <b>bool</b> A boolean value, determining if debug messages appear
+ * 
  * @since 1.0
  */
 public class Debug implements IStatement {

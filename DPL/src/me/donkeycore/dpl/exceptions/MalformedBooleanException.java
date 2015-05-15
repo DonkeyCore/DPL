@@ -8,8 +8,6 @@ import java.util.List;
  * 
  * @author Adolfo Sanz De Diego
  * @since 1.0
- * @see MalformedBooleanException#MalformedBooleanException(String, String)
- * @see MalformedBooleanException#MalformedBooleanException(String, List, String)
  * @see DonkeyException
  * @see DonkeyException#DonkeyException(String)
  */
@@ -23,26 +21,27 @@ public final class MalformedBooleanException extends Exception {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * The error indexes.
+	 * 
+	 * @since 1.0
 	 */
 	private List<Integer> booleanExpressionErrorIndexes;
 	/**
 	 * The Boolean String Expression.
+	 * 
+	 * @since 1.0
 	 */
 	private String booleanExpression;
 	/**
 	 * The error message.
+	 * 
+	 * @since 1.0
 	 */
 	private String booleanExpressionErrorMessage;
 	
 	/**
-	 * Constructor.
-	 * 
-	 * @param errorMessage
-	 *            The error message.
-	 * @param errorIndex
-	 *            The index with error.
-	 * @param newBooleanExpression
-	 *            The boolean expression.
+	 * @param errorMessage The error message.
+	 * @param errorIndex The index with error.
+	 * @param newBooleanExpression The boolean expression.
 	 * @since 1.0
 	 */
 	public MalformedBooleanException(final String errorMessage, final int errorIndex, final String newBooleanExpression) {
@@ -50,14 +49,9 @@ public final class MalformedBooleanException extends Exception {
 	}
 	
 	/**
-	 * Constructor.
-	 * 
-	 * @param errorMessage
-	 *            The error message.
-	 * @param errorIndexes
-	 *            The {@link List} with the indexes with error.
-	 * @param newBooleanExpression
-	 *            The boolean expression.
+	 * @param errorMessage The error message.
+	 * @param errorIndexes The {@link List} with the indexes with error.
+	 * @param newBooleanExpression The boolean expression.
 	 * @since 1.0
 	 */
 	public MalformedBooleanException(final String errorMessage, final List<Integer> errorIndexes, final String newBooleanExpression) {
@@ -71,6 +65,7 @@ public final class MalformedBooleanException extends Exception {
 	 * Returns the Boolean String Expression.
 	 * 
 	 * @return The Boolean String Expression.
+	 * @since 1.0
 	 */
 	public String getBooleanExpression() {
 		return this.booleanExpression;
@@ -80,6 +75,7 @@ public final class MalformedBooleanException extends Exception {
 	 * Returns the error indexes.
 	 * 
 	 * @return The error indexes.
+	 * @since 1.0
 	 */
 	public List<Integer> getBooleanExpressionErrorIndexes() {
 		return this.booleanExpressionErrorIndexes;
@@ -89,6 +85,7 @@ public final class MalformedBooleanException extends Exception {
 	 * Returns the error message.
 	 * 
 	 * @return The error message.
+	 * @since 1.0
 	 */
 	public String getBooleanExpressionErrorMessage() {
 		return this.booleanExpressionErrorMessage;
@@ -97,9 +94,9 @@ public final class MalformedBooleanException extends Exception {
 	/**
 	 * Returns a new {@link List} with the supplied error index.
 	 * 
-	 * @param errorIndex
-	 *            The index with error.
+	 * @param errorIndex The index with error.
 	 * @return A new {@link List} with the supplied error index.
+	 * @since 1.0
 	 */
 	private static List<Integer> toList(final int errorIndex) {
 		List<Integer> errorIndexes = new ArrayList<Integer>();
@@ -110,24 +107,19 @@ public final class MalformedBooleanException extends Exception {
 	/**
 	 * Returns the exception message formated.
 	 * 
-	 * @param errorMessage
-	 *            The error message.
-	 * @param errorIndexes
-	 *            The {@link List} with the indexes with error.
-	 * @param newBooleanExpression
-	 *            The boolean expression.
+	 * @param errorMessage The error message.
+	 * @param errorIndexes The {@link List} with the indexes with error.
+	 * @param newBooleanExpression The boolean expression.
 	 * @return The error message formated.
+	 * @since 1.0
 	 */
 	private static String format(final String errorMessage, final List<Integer> errorIndexes, final String newBooleanExpression) {
-		if (errorMessage == null || errorMessage.equals("")) {
+		if (errorMessage == null || errorMessage.equals(""))
 			throw new IllegalArgumentException("errorMessage is null or void");
-		}
-		if (errorIndexes == null || errorIndexes.isEmpty()) {
+		if (errorIndexes == null || errorIndexes.isEmpty())
 			throw new IllegalArgumentException("errorIndexes is null or void");
-		}
-		if (newBooleanExpression == null || newBooleanExpression.equals("")) {
+		if (newBooleanExpression == null || newBooleanExpression.equals(""))
 			throw new IllegalArgumentException("newBooleanExpression is null or void");
-		}
 		StringBuilder error = new StringBuilder();
 		error.append(errorMessage);
 		error.append(" in [ ");
@@ -141,20 +133,17 @@ public final class MalformedBooleanException extends Exception {
 		}
 		error.append(newBooleanExpression.substring(lastIndex, newBooleanExpression.length()));
 		error.append(" ]");
-		if (size == 1) {
+		if (size == 1)
 			error.append(" - Index [");
-		} else if (size > 1) {
+		else if (size > 1)
 			error.append(" - Indexes [");
-		}
 		for(int i = 0; i < size; i++) {
 			error.append(errorIndexes.get(i));
-			if (i != (size - 1)) {
+			if (i != (size - 1))
 				error.append(", ");
-			}
 		}
-		if (size > 0) {
+		if (size > 0)
 			error.append("]");
-		}
 		return error.toString();
 	}
 }

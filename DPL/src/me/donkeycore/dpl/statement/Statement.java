@@ -132,8 +132,8 @@ public final class Statement {
 	}
 	
 	/**
-	 * Change the file being used. <br/>
-	 * <b>Note: This is a method used by the system and should NOT be changed.</b>
+	 * Change the file being used. <br>
+	 * <b>Note: This is a method used by the system and should NOT be used.</b><br>
 	 * 
 	 * @param f The file to change to
 	 * @since 1.0
@@ -175,6 +175,7 @@ public final class Statement {
 	 * Get the line a {@link File} has on a certain line.
 	 * 
 	 * @param f The file to get the information from
+	 * @param line The line to retrieve information from
 	 * @return The line on that line number
 	 * @since 1.0
 	 */
@@ -274,8 +275,11 @@ public final class Statement {
 	 * 
 	 * @param statement The statement to execute
 	 * @param lineNumber The statement's line number
-	 * @since 1.0
+	 * @throws TypeDoesNotExistException If the statement tries to declare a variable with an invalid type
+	 * @throws IncompatibleVariableTypesException If the statement tries to set a variable to an unsupported type
+	 * @throws VariableAlreadyDeclaredException If the statement tries to declare a variable name already taken
 	 * @see Statement
+	 * @since 1.0
 	 */
 	public Statement(String statement, int lineNumber) throws TypeDoesNotExistException, IncompatibleVariableTypesException, VariableAlreadyDeclaredException {
 		this.raw = statement;

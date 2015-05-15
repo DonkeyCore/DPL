@@ -33,6 +33,7 @@ public final class IOClass {
 	/**
 	 * Create a new {@link IOClass} from a {@link DonkeyClass}
 	 * 
+	 * @param clazz A {@link DonkeyClass} that manages this object
 	 * @see DonkeyClass
 	 * @since 1.0
 	 */

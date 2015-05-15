@@ -32,15 +32,17 @@ public interface IVariable {
 	/**
 	 * Sets the value of the {@link Object}
 	 * 
+	 * @param <T> The variable object type
 	 * @param v The new variable object to be set
+	 * @throws IncompatibleVariableTypesException If the variable is being set to an unsupported object type
 	 * @since 1.0
 	 */
 	public <T> void set(T v) throws IncompatibleVariableTypesException;
 	
 	/**
 	 * The type of the variable <h1>Example:</h1> <code>
-	 * public String getName(){<br />
-	 * return "string";<br />
+	 * public String getName(){<br>
+	 * return "string";<br>
 	 * }
 	 * </code> <h1>Can be used as:</h1> <code>
 	 * string somevar = some string;

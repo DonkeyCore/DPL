@@ -21,7 +21,6 @@ import me.donkeycore.dpl.statement.Statement;
  * 
  * @since 1.0
  * @see FileCreator#getFile(File)
- * @see FileCreator#getFile(String)
  * @see FileCreator#getFile(String, String)
  * @see FileCreator#getBatchFile(String)
  * @see FileCreator#getBashScript(String)
@@ -179,7 +178,7 @@ public class FileCreator {
 	 * Retrieve or create a bash script based on the file's name
 	 * 
 	 * @param file The name of the file, without the extension
-	 * @return A {@link FileShellConfiguration} instance of the file to customize it
+	 * @return A {@link FileBashConfiguration} instance of the file to customize it
 	 * @since 1.0
 	 * @see FileCreator
 	 * @see FileConfiguration
@@ -214,12 +213,12 @@ public class FileCreator {
 	}
 	
 	/**
-	 * Create a file based on its name. This method is automatically called by all the methods to retrieve files when creating a file. <br/>
-	 * <br />
+	 * Create a file based on its name. This method is automatically called by all the methods to retrieve files when creating a file. <br>
+	 * <br>
 	 * <b>
-	 * Donkey scripts will be placed in the <code>/scripts/</code> folder <br />
-	 * Batch scripts will be placed in the <code>/batch/</code> folder <br />
-	 * Bash scripts will be placed in the <code>/bash/</code> folder <br />
+	 * Donkey scripts will be placed in the <code>/scripts/</code> folder <br>
+	 * Batch scripts will be placed in the <code>/batch/</code> folder <br>
+	 * Bash scripts will be placed in the <code>/bash/</code> folder <br>
 	 * <i>Any other files will be placed in the root folder</i>
 	 * </b>
 	 * 
@@ -296,7 +295,6 @@ public class FileCreator {
 	 * @since 1.0
 	 * @see FileCreator
 	 * @see FileRunConfiguration
-	 * @see FileConfiguration#FileConfiguration(File)
 	 */
 	public static class FileConfiguration {
 		
@@ -432,7 +430,6 @@ public class FileCreator {
 		 * @since 1.0
 		 * @see FileCreator
 		 * @see FileConfiguration
-		 * @see FileRunConfiguration#FileRunConfiguration(FileConfiguration)
 		 */
 		public final class FileRunConfiguration {
 			
@@ -552,7 +549,6 @@ public class FileCreator {
 	 * @since 1.0
 	 * @see FileCreator
 	 * @see FileConfiguration
-	 * @see FileBatchConfiguration#FileBatchConfiguration(File)
 	 */
 	public static final class FileBatchConfiguration extends FileConfiguration {
 		
@@ -602,7 +598,6 @@ public class FileCreator {
 	 * @since 1.0
 	 * @see FileCreator
 	 * @see FileConfiguration
-	 * @see FileBashConfiguration#FileBashConfiguration(File)
 	 */
 	public static final class FileBashConfiguration extends FileConfiguration {
 		
@@ -650,7 +645,6 @@ public class FileCreator {
 	 * @since 1.0
 	 * @see FileCreator
 	 * @see FileConfiguration
-	 * @see FileDonkeyConfiguration#FileDonkeyConfiguration(File)
 	 */
 	public static final class FileDonkeyConfiguration extends FileConfiguration {
 		

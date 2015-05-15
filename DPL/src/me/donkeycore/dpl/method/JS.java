@@ -9,10 +9,10 @@ import me.donkeycore.dpl.exceptions.MethodUnsatisfiedException;
 import me.donkeycore.dpl.statement.Statement;
 
 /**
- * Used to run JavaScript by using {@link ScriptEngine} <br />
- * Syntax: <code>@js(script)</code>
+ * Used to run JavaScript by using {@link ScriptEngine} <br>
+ * Syntax: <code>@js(script)</code><br>
  * 
- * @param script The JavaScript code to run
+ * <b>script</b> The JavaScript code to run
  * @since 1.0
  */
 public class JS implements IMethod {

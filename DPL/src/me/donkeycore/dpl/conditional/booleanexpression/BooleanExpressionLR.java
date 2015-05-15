@@ -13,8 +13,8 @@ import me.donkeycore.dpl.exceptions.MalformedBooleanException;
  * 		<font color="#7f0055"><b>try</b></font> {<br>
  * 		&nbsp;&nbsp;&nbsp;&nbsp;boolExpr = <a class="link" href="BooleanExpression.html">BooleanExpression</a>.<a class="link" href="BooleanExpression.html#readLeftToRight(java.lang.String)"><b>readLeftToRight</b></a>(strBoolExpr);<br>
  * 		&nbsp;&nbsp;&nbsp;&nbsp;<font color="#7F0055"><b>boolean</b></font> bool = boolExpr.<a class="link" href="#booleanValue()">booleanValue</a>();<br>
- * 		&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(boolExpr.toString() + " == " + bool);<br />
- * 		&nbsp;&nbsp;&nbsp;&nbsp;<font color="#3F7F5F">// (((!true)&amp;&amp;false)||true) == <b>true</b></font><br />
+ * 		&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(boolExpr.toString() + " == " + bool);<br>
+ * 		&nbsp;&nbsp;&nbsp;&nbsp;<font color="#3F7F5F">// (((!true)&amp;&amp;false)||true) == <b>true</b></font><br>
  * 		} <font color="#7F0055"><b>catch</b></font> (<a class="link" href="MalformedBooleanException.html">MalformedBooleanException</a> e) {<br>
  * 		&nbsp;&nbsp;&nbsp;&nbsp;e.printStackTrace();<br>
  * 		}<br>

@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 import javax.script.ScriptException;
 
 import me.donkeycore.dpl.Donkey;
-import me.donkeycore.dpl.Expression;
 import me.donkeycore.dpl.Donkey.LogLevel;
+import me.donkeycore.dpl.Expression;
 import me.donkeycore.dpl.exceptions.DonkeyException;
 import me.donkeycore.dpl.exceptions.IncompatibleVariableTypesException;
 import me.donkeycore.dpl.exceptions.TypeDoesNotExistException;
@@ -20,11 +20,15 @@ import me.donkeycore.dpl.statement.Statement;
  * The {@link Variable} class that variables extend. This class implements {@link IVariable}
  * 
  * @since 1.0
- * @see Variable#Variable(String, IVariable)
  * @see IVariable
  */
 public abstract class Variable implements IVariable {
 	
+	/**
+	 * The list of registered {@link Variable} objects
+	 * 
+	 * @since 1.0
+	 */
 	private static final java.util.ArrayList<Variable> vars = new java.util.ArrayList<Variable>();
 	
 	/**
@@ -96,7 +100,8 @@ public abstract class Variable implements IVariable {
 	/**
 	 * Set the new value of this variable
 	 * 
-	 * @param value The new {@link Object} to assign
+	 * @param <T> The variable type
+	 * @param v The new {@link Object} to assign
 	 * @throws IncompatibleVariableTypesException If the variable is assigned something that it cannot represent
 	 * @since 1.0
 	 */

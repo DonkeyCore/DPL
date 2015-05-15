@@ -15,7 +15,7 @@ import me.donkeycore.dpl.Donkey;
 import me.donkeycore.dpl.io.FileCreator;
 
 /**
- * This singleton class loads all {@link DPlugin} classes found in JARs.<br />
+ * This singleton class loads all {@link DPlugin} classes found in JARs.<br>
  * Default plugin location folder: <code>donkey/plugins/</code>
  * 
  * @see DPlugin
@@ -107,7 +107,7 @@ public class PluginLoader {
 	}
 	
 	/**
-	 * Loads all {@link DPlugin} classes found in JARs.<br />
+	 * Loads all {@link DPlugin} classes found in JARs.<br>
 	 * Default plugin location folder: <code>donkey/plugins/</code>
 	 * 
 	 * @since 1.0

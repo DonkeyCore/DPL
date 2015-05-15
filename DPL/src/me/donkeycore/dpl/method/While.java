@@ -8,10 +8,10 @@ import me.donkeycore.dpl.exceptions.DonkeyException;
 import me.donkeycore.dpl.statement.Statement;
 
 /**
- * Repeat a block until a statement is evaluated to false <br />
- * Syntax: <code>while(condition) { ...</code>
+ * Repeat a block until a statement is evaluated to false <br>
+ * Syntax: <code>while(condition) { ...</code><br>
  * 
- * @param condition The condition being tested
+ * <b>condition</b> The condition being tested
  * @since 1.0
  */
 public class While implements IMethod {

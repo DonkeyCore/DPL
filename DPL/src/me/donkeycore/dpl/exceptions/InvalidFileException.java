@@ -20,6 +20,7 @@ public class InvalidFileException extends DonkeyException {
 	/**
 	 * Thrown when a file does not end with .donkey or is not a valid Donkey class file.
 	 * 
+	 * @param msg The message to be displayed at runtime
 	 * @since 1.0
 	 * @see InvalidFileException
 	 */

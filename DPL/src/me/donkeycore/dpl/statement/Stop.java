@@ -4,11 +4,12 @@ import me.donkeycore.dpl.exceptions.DonkeyException;
 import me.donkeycore.dpl.exceptions.StatementUnsatisfiedException;
 
 /**
- * Stop the program <br />
- * Syntax: <code>stop</code> <br />
- * Syntax: <code>stop errno</code>
+ * Stop the program <br>
+ * Syntax: <code>stop</code> <br>
+ * Syntax: <code>stop errno</code><br>
  * 
- * @param errno The exit code
+ * <b>errno</b> The exit code
+ * 
  * @since 1.0
  */
 public class Stop implements IStatement {

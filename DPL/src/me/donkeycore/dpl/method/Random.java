@@ -18,7 +18,7 @@ public class Random {
 	private static final java.util.Random r = new java.util.Random();
 	
 	/**
-	 * Generate a random value: <code>true</code> or <code>false</code> <br />
+	 * Generate a random value: <code>true</code> or <code>false</code> <br>
 	 * Syntax: <code>@randomBoolean()</code>
 	 * 
 	 * @since 1.0
@@ -35,13 +35,13 @@ public class Random {
 	}
 	
 	/**
-	 * Generate a random integer or by the bounds specified <br />
-	 * Syntax: <code>@randomInteger()</code> <br />
-	 * Syntax: <code>@randomInteger(high)</code> <br />
-	 * Syntax: <code>@randomInteger(high, low)</code>
+	 * Generate a random integer or by the bounds specified <br>
+	 * Syntax: <code>@randomInteger()</code> <br>
+	 * Syntax: <code>@randomInteger(high)</code> <br>
+	 * Syntax: <code>@randomInteger(high, low)</code><br>
 	 * 
-	 * @param high The upper bound, exclusive
-	 * @param low The lower bound, inclusive
+	 * <b>high</b> The upper bound, exclusive<br>
+	 * <b>low</b> The lower bound, inclusive
 	 * @since 1.0
 	 */
 	public static class RandomInteger implements IMethod {

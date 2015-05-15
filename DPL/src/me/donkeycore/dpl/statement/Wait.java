@@ -4,10 +4,11 @@ import me.donkeycore.dpl.exceptions.DonkeyException;
 import me.donkeycore.dpl.exceptions.InvalidStatementException;
 
 /**
- * Wait for a specified period of time <br />
- * Syntax: <code>wait(milliseconds)</code>
+ * Wait for a specified period of time <br>
+ * Syntax: <code>wait(milliseconds)</code><br>
  * 
- * @param millseconds The amount of millseconds to wait
+ * <b>millseconds</b> The amount of millseconds to wait
+ * 
  * @since 1.0
  */
 public class Wait implements IStatement {
