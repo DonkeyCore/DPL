@@ -8,7 +8,7 @@ DPL should be compatible with most Java versions.
 <ol>
 <li>Download the ZIP file, and compile it as a runnable JAR file.</li>
 <li>Run using the following command: <pre>java -jar NAME.jar</pre>No arguments will create a UI to easily use. Add a file as a parameter to simply run that script.</li>
-<li>Optional for Unix systems: Create a file in /usr/bin/ named "dpl" with the following code: <pre>java -jar ~/PATH/NAME.jar</pre>You can then make your DPL scripts executable and have a header with this code to run correctly:<pre>#!/usr/bin/dpl</pre></li>
+<li>Optional for Unix systems: Create a file in /usr/bin/ named "dpl" with the following code: <pre>java -jar ~/PATH/NAME.jar</pre>You can then make your DPL scripts executable and have a header with this code to run correctly without actually starting the DPL.jar:<pre>#!/usr/bin/env bash /PATH/dpl</pre></li>
 </ol>
 
 ### Tutorial
