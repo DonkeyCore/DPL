@@ -4,7 +4,7 @@ Donkey Programming Language
 This is a language in Java, designed to be easy to use, and simple. Not made for extreme efficiency, or massive projects. Feel free to use this for any purpose you desire.
 
 ### Installation
-DPL should be compatible with most Java versions.
+DPL is compatible only with Java 8 and above.
 <ol>
 <li>Download the ZIP file, and compile it as a runnable JAR file.</li>
 <li>Run using the following command: <pre>java -jar NAME.jar</pre>No arguments will create a UI to easily use. Add a file as a parameter to simply run that script.</li>

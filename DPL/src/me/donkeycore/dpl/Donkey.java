@@ -202,15 +202,15 @@ public final class Donkey {
 	 * @since 1.0
 	 */
 	public static void printError(Throwable e) {
-		System.err.println("An error has occurred! Details as follows:");
+		fatal("An error has occurred! Details as follows:");
 		if (e.getCause() != null)
-			System.err.println("Cause: " + e.getCause().getClass().getSimpleName() + " : " + e.getMessage());
+			fatal("Cause: " + e.getCause().getClass().getSimpleName() + " : " + e.getMessage());
 		else
-			System.err.println("Cause: " + e.getMessage());
+			fatal("Cause: " + e.getMessage());
 		int id = 1;
 		for(StackTraceElement s : e.getStackTrace()) {
 			if (!s.getClassName().startsWith("java"))
-				System.err.println("Error #" + id++ + ": " + s.getClassName() + " at line " + s.getLineNumber() + " in " + s.getMethodName());
+				fatal("Error #" + id++ + ": " + s.getClassName() + " at line " + s.getLineNumber() + " in " + s.getMethodName());
 		}
 		System.exit(1);
 	}

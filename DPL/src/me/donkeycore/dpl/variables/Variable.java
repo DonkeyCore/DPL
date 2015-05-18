@@ -106,9 +106,9 @@ public abstract class Variable implements IVariable {
 	 * @since 1.0
 	 */
 	public final <T> void set(T v) throws IncompatibleVariableTypesException {
-		if (value.getClass().getSimpleName().equals(v.getClass().getSimpleName())) {
+		if (value.getClass().getSimpleName().equals(v.getClass().getSimpleName()))
 			this.value = v;
-		} else
+		else
 			throw new IncompatibleVariableTypesException(value, (Object) v);
 	}
 	
