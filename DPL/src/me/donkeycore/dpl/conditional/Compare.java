@@ -80,35 +80,55 @@ public class Compare {
 				}
 			}
 		}
-		Pattern p = Pattern.compile("(\\d+|\\d+\\.\\d+)\\s*(<|>|==|!=|>=|<=)\\s*(\\d+|\\d+\\.\\d+).*");
-		Matcher m = p.matcher(c);
-		if (m.matches()) {
-			Double d1 = Double.parseDouble(m.group(1));
-			Double d2 = Double.parseDouble(m.group(3));
-			switch(m.group(2)) {
-				default:
-					break;
-				case "<":
-					c = c.replaceAll("[" + d1 + "]\\s*<\\s*[" + d2 + "]", (d1 < d2) + "");
-					break;
-				case ">":
-					c = c.replaceAll("[" + d1 + "]\\s*>\\s*[" + d2 + "]", (d1 > d2) + "");
-					break;
-				case "<=":
-					c = c.replaceAll("[" + d1 + "]\\s*<=\\s*[" + d2 + "]", (d1 <= d2) + "");
-					break;
-				case ">=":
-					c = c.replaceAll("[" + d1 + "]\\s*>=\\s*[" + d2 + "]", (d1 >= d2) + "");
-					break;
-				case "==":
-					c = c.replaceAll("[" + d1 + "]\\s*==\\s*[" + d2 + "]", (d1 == d2) + "");
-					break;
-				case "!=":
-					c = c.replaceAll("[" + d1 + "]\\s*!=\\s*[" + d2 + "]", (d1 != d2) + "");
-					break;
+		if (!c.matches(".*\\d+.*")) {
+			Pattern p = Pattern.compile("\\s*\"?(.+)\"?\\s*(==|!=)\\s*\"?(.+)\"?.*");
+			Matcher m = p.matcher(c);
+			if (m.matches()) {
+				String s1 = m.group(1).trim();
+				String s2 = m.group(3).trim();
+				switch(m.group(2)) {
+					default:
+						break;
+					case "==":
+						c = c.replaceAll("[" + s1 + "]\\s*==\\s*[" + s2 + "]", s1.equalsIgnoreCase(s2) + ""); //Change to equals when methods are added for lowercase/uppercase conversions
+						break;
+					case "!=":
+						c = c.replaceAll("[" + s1 + "]\\s*!=\\s*[" + s2 + "]", !s1.equalsIgnoreCase(s2) + ""); //Change to !equals when methods are added for lowercase/uppercase conversions
+						break;
+				}
+				c = c.replaceAll("^.*(true|false).*$", "$1");
 			}
+		} else {
+			Pattern p = Pattern.compile("(\\d+|\\d+\\.\\d+)\\s*(<|>|==|!=|>=|<=)\\s*(\\d+|\\d+\\.\\d+).*");
+			Matcher m = p.matcher(c);
+			if (m.matches()) {
+				Double d1 = Double.parseDouble(m.group(1));
+				Double d2 = Double.parseDouble(m.group(3));
+				switch(m.group(2)) {
+					default:
+						break;
+					case "<":
+						c = c.replaceAll("[" + d1 + "]\\s*<\\s*[" + d2 + "]", (d1 < d2) + "");
+						break;
+					case ">":
+						c = c.replaceAll("[" + d1 + "]\\s*>\\s*[" + d2 + "]", (d1 > d2) + "");
+						break;
+					case "<=":
+						c = c.replaceAll("[" + d1 + "]\\s*<=\\s*[" + d2 + "]", (d1 <= d2) + "");
+						break;
+					case ">=":
+						c = c.replaceAll("[" + d1 + "]\\s*>=\\s*[" + d2 + "]", (d1 >= d2) + "");
+						break;
+					case "==":
+						c = c.replaceAll("[" + d1 + "]\\s*==\\s*[" + d2 + "]", (d1 == d2) + "");
+						break;
+					case "!=":
+						c = c.replaceAll("[" + d1 + "]\\s*!=\\s*[" + d2 + "]", (d1 != d2) + "");
+						break;
+				}
+			}
+			c = c.replaceAll("^[\\d+]?(true|false)[\\d+]$", "$1");
 		}
-		c = c.replaceAll("^[\\d+]?(true|false)[\\d+]$", "$1");
 		try {
 			return BooleanExpression.readLeftToRight(c).booleanValue();
 		} catch(MalformedBooleanException e) {
