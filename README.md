@@ -12,7 +12,7 @@ DPL is compatible only with Java 8 and above.
 </ol>
 
 ### Tutorial
-A tutorial for the DPL language will be coming soon.
+The tutorial for DPL can be found <a href="https://github.com/DonkeyCore/DPL/wiki/Tutorial">on the wiki</a>.
 
 ### Credits
 This project uses JBooleanExpression, found <a href="http://jboolexpr.sourceforge.net">here</a>
