@@ -42,7 +42,7 @@ public final class Donkey {
 	 * 
 	 * @since 1.0
 	 */
-	public long startTime;
+	private long startTime;
 	/**
 	 * The file that will be run
 	 * 
@@ -178,6 +178,15 @@ public final class Donkey {
 	}
 	
 	/**
+	 * Retrieve the time that the program was started
+	 * @return The program start time
+	 * @since 1.0
+	 */
+	public long getStartTime() {
+		return startTime;
+	}
+	
+	/**
 	 * Retrieve the default plugin loader
 	 * @return The default plugin loader
 	 * @since 1.0
@@ -202,15 +211,15 @@ public final class Donkey {
 	 * @since 1.0
 	 */
 	public static void printError(Throwable e) {
-		fatal("An error has occurred! Details as follows:");
+		log(LogLevel.FATAL, "An error has occurred! Details as follows:", "Donkey");
 		if (e.getCause() != null)
-			fatal("Cause: " + e.getCause().getClass().getSimpleName() + " : " + e.getMessage());
+			log(LogLevel.FATAL, "Cause: " + e.getCause().getClass().getSimpleName() + " : " + e.getMessage(), "Donkey");
 		else
-			fatal("Cause: " + e.getMessage());
+			log(LogLevel.FATAL, "Cause: " + e.getMessage(), "Donkey");
 		int id = 1;
 		for(StackTraceElement s : e.getStackTrace()) {
 			if (!s.getClassName().startsWith("java"))
-				fatal("Error #" + id++ + ": " + s.getClassName() + " at line " + s.getLineNumber() + " in " + s.getMethodName());
+				log(LogLevel.FATAL, "Error #" + id++ + ": " + s.getClassName() + " at line " + s.getLineNumber() + " in " + s.getMethodName(), "Donkey");
 		}
 		System.exit(1);
 	}

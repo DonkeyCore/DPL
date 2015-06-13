@@ -150,7 +150,7 @@ public abstract class Variable implements IVariable {
 		}
 		long currentTime = System.currentTimeMillis();
 		while(value.matches(".*\\w+\\s*\\(.*\\).*")) {
-			if (System.currentTimeMillis() - currentTime > 30 * 1000) {
+			if (System.currentTimeMillis() - currentTime > 30000) {
 				Donkey.log(LogLevel.WARNING, "Timed out", "Donkey");
 				break;
 			}
@@ -165,8 +165,8 @@ public abstract class Variable implements IVariable {
 		}
 		Pattern pattern = Pattern.compile(".*((\\d*\\.\\d+)|(\\d+)|([\\+\\-\\*/%\\(\\)])).*");
 		Matcher m = pattern.matcher(value);
-		while(m.find()) {
-			String g = m.group().replaceAll("[a-zA-Z]", " ").trim();
+		if(m.find()) {
+			String g = m.group(0).replaceAll("[a-zA-Z]", " ").trim();
 			value = value.replace(g, Expression.evaluate(g).toString().replaceAll("\\.0\\b", ""));
 		}
 		if (value.endsWith(".0"))

@@ -39,6 +39,7 @@ public class Expression {
 	public static Double evaluate(String expression) throws ScriptException {
 		ScriptEngineManager factory = new ScriptEngineManager();
 		ScriptEngine engine = factory.getEngineByName("js");
+		System.out.println(expression);
 		return Double.parseDouble(engine.eval(expression).toString());
 	}
 	

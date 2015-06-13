@@ -31,6 +31,12 @@ public final class IOClass {
 	private final DonkeyClass clazz;
 	
 	/**
+	 * The current line number
+	 * @since 1.0
+	 */
+	private int line;
+	
+	/**
 	 * Create a new {@link IOClass} from a {@link DonkeyClass}
 	 * 
 	 * @param clazz A {@link DonkeyClass} that manages this object
@@ -58,21 +64,21 @@ public final class IOClass {
 	 * @since 1.0
 	 */
 	public void runCode() throws InvalidStatementException {
-		//Statement st = null;
 		try {
 			String last = "";
 			for(Statement s : getStatements()) {
 				if (Statement.canRun(s.getLineNumber())) {
+					line = s.getLineNumber();
 					s.runStatement();
 					if (s.getStatement().startsWith("print"))
 						last = s.getStatement();
 				}
 			}
-			if (last.matches("print\\s*;"))
+			if (last.matches("print\\s*;*"))
 				System.out.println();
 			System.out.println();
 			long endTime = System.currentTimeMillis();
-			float totalTimeMS = endTime - getDonkeyClass().getDonkey().startTime;
+			float totalTimeMS = endTime - getDonkeyClass().getDonkey().getStartTime();
 			float totalTimeD = totalTimeMS / 1000;
 			String totalTime = totalTimeD + "";
 			int n = 6;
@@ -86,31 +92,18 @@ public final class IOClass {
 				totalTime = totalTime.replaceAll("\\.$", "");
 			Donkey.log(LogLevel.DEBUG, "Finished in " + (totalTimeMS + "").replaceAll("\\.[0]\\b", "") + "ms (" + totalTime + " seconds) with exit code: " + Statement.errno, "Donkey");
 			Donkey.log(LogLevel.DEBUG, "Press Enter to continue.", "Donkey");
-			if (Donkey.debug)
-				new BufferedReader(new InputStreamReader(System.in)).readLine();
+			if (Donkey.debug) {
+				BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
+				r.readLine();
+				r.close();
+			}
 			System.exit(Statement.errno);
 		} catch(Throwable e) {
 			if (e instanceof InvalidStatementException)
 				throw new InvalidStatementException(e.getMessage());
-			//for(int i = 0; i < 10; i++)
-			//System.out.print("\b");
-			//FileCreator.getBatchFile("error").withNoCode().withCode("@echo off").withCode("title Donkey - Error: " + e.getMessage()).withCode("echo -=[DPL Error Report]=-").withCode("echo.").withCode("echo A fatal error has occured while running " + getDonkeyClass().getFile().getAbsolutePath() + ":").withCode("echo " + e.getMessage()).withCode("echo.").withCode("").run();
-			//if(st.attempt == 0){
-			//Donkey.error(st.getStatement() + ":" + st.getLineNumber() + " (" + st.getRawStatement() + ")");
-			Donkey.log(LogLevel.FATAL, "A fatal error has occured while running " + getDonkeyClass().getFile().getAbsolutePath() + ":", "Donkey");
-			Donkey.log(LogLevel.FATAL, e.getMessage(), "Donkey");
-			Donkey.log(LogLevel.FATAL, "Internal stack trace:", "Donkey");
+			Donkey.log(LogLevel.FATAL, "A fatal error has occurred while running " + getDonkeyClass().getFile().getAbsolutePath() + " at line " + line + ":", "Donkey");
 			Donkey.printError(e);
 			System.exit(1);
-			/*
-			 * }else{
-			 * try{
-			 * new Statement(st.getRawStatement(), st.attempt).runBlock(true);
-			 * }catch(Throwable e1){
-			 * Donkey.printError(e1);
-			 * }
-			 * }
-			 */
 		}
 	}
 	
@@ -128,9 +121,11 @@ public final class IOClass {
 			Statement.setFile(f);
 			r = new LineNumberReader(new BufferedReader(new FileReader(f)));
 			String s;
+			int line = 1;
 			while((s = r.readLine()) != null) {
 				if (s.length() > 0)
-					statements.add(new Statement(getStatement(s, s), r.getLineNumber()));
+					statements.add(new Statement(getStatement(s, s), line));
+				line++;
 			}
 			r.close();
 			return statements.toArray(new Statement[statements.size()]);
@@ -148,7 +143,18 @@ public final class IOClass {
 	}
 	
 	/**
+	 * Get the line number currently being read
+	 * @return The line number
+	 * @since 1.0
+	 */
+	public int getCurrentLineNumber() {
+		return line;
+	}
+	
+	/**
 	 * Parse a statement
+	 * @return The parsed statement
+	 * @since 1.0
 	 */
 	private String getStatement(String s, String st) {
 		if (s.indexOf(st) + st.length() < s.length())
