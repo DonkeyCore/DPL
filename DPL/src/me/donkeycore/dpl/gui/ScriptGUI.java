@@ -68,12 +68,7 @@ public class ScriptGUI extends JDialog implements ActionListener {
 	 * @since 1.0
 	 */
 	private static final Point CENTER = new Point((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2) - (WIDTH / 2), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2) - (HEIGHT / 2));
-	/**
-	 * A {@link Point} marking the width and height of the screen
-	 * 
-	 * @since 1.0
-	 */
-	private static final Point END = new Point((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+	
 	/**
 	 * Exit button
 	 */
@@ -295,10 +290,7 @@ public class ScriptGUI extends JDialog implements ActionListener {
 	 * @since 1.0
 	 */
 	private String getNewValue() {
-		setLocation(END);
-		String s = JOptionPane.showInputDialog(frame, "File name:", "Add new file", JOptionPane.INFORMATION_MESSAGE);
-		setLocation(CENTER);
-		return s;
+		return JOptionPane.showInputDialog(frame, "File name:", "Add new file", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	/**
