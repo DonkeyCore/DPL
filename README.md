@@ -1,18 +1,6 @@
-<<<<<<< HEAD
 # DPL
 Donkey Programming Language
 
-=======
-<<<<<<< HEAD
-# DPL Docs
-Donkey Programming Language Documentation
-
-Project with code can be found [here](https://github.com/DonkeyCore/DPL)
-=======
-# DPL
-Donkey Programming Language
-
->>>>>>> refs/remotes/origin/master
 This is a language in Java, designed to be easy to use, and simple. Not made for extreme efficiency, or massive projects. Feel free to use this for any purpose you desire.
 
 ### Installation
@@ -28,7 +16,3 @@ The tutorial for DPL can be found <a href="https://github.com/DonkeyCore/DPL/wik
 
 ### Credits
 This project uses JBooleanExpression, found <a href="http://jboolexpr.sourceforge.net">here</a>
-<<<<<<< HEAD
-=======
->>>>>>> 2674eec840f6a0986afa78e34758ee3e0feff064
->>>>>>> refs/remotes/origin/master
